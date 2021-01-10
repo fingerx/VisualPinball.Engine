@@ -31,11 +31,13 @@ namespace VisualPinball.Unity
 	/// gamelogic engine. For now it just tries to find the flippers and hook
 	/// them up to the switches.
 	/// </summary>
+	[Serializable]
 	[DisallowMultipleComponent]
 	[AddComponentMenu("Visual Pinball/Game Logic Engine/Default Game Logic")]
 	public class DefaultGamelogicEngine : MonoBehaviour, IGamelogicEngine
 	{
 		public string Name { get; } = "Default Game Engine";
+		public string Id { get; } = typeof(DefaultGamelogicEngine).FullName;
 
 		public event EventHandler<CoilEventArgs> OnCoilChanged;
 		public event EventHandler<LampEventArgs> OnLampChanged;
@@ -108,7 +110,6 @@ namespace VisualPinball.Unity
 
 		private const string LampRedBumper = "l_bumper";
 
-
 		public GamelogicEngineLamp[] AvailableLamps { get; } =
 		{
 			new GamelogicEngineLamp { Id = GiSlingshotRightLower, Description = "Right Slingshot (lower)", PlayfieldItemHint = "gi1$" },
@@ -153,10 +154,6 @@ namespace VisualPinball.Unity
 			// eject ball onto playfield
 			OnCoilChanged?.Invoke(this, new CoilEventArgs(CoilTroughEject, true));
 			_player.ScheduleAction(100, () => OnCoilChanged?.Invoke(this, new CoilEventArgs(CoilTroughEject, false)));
-		}
-
-		public void OnUpdate()
-		{
 		}
 
 		public void OnDestroy()

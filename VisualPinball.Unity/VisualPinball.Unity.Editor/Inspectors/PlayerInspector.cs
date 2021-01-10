@@ -32,14 +32,17 @@ namespace VisualPinball.Unity.Editor
 		private string[] _debugUINames;
 		private int _debugUIIndex;
 
+		private Player _player;
+
+		private void OnEnable()
+		{
+			_player = (Player) target;
+		}
+
 		public override void OnInspectorGUI()
 		{
-			var player = (Player) target;
-			if (player == null) {
-				return;
-			}
-			DrawEngineSelector("Physics Engine", ref player.physicsEngineId, ref _physicsEngines, ref _physicsEngineNames, ref _physicsEngineIndex);
-			DrawEngineSelector("Debug UI", ref player.debugUiId, ref _debugUIs, ref _debugUINames, ref _debugUIIndex);
+			DrawEngineSelector("Physics Engine", ref _player.physicsEngineId, ref _physicsEngines, ref _physicsEngineNames, ref _physicsEngineIndex);
+			DrawEngineSelector("Debug UI", ref _player.debugUiId, ref _debugUIs, ref _debugUINames, ref _debugUIIndex);
 		}
 
 		private void DrawEngineSelector<T>(string engineName, ref string engineId, ref T[] instances, ref string[] names, ref int index) where T : IEngine
