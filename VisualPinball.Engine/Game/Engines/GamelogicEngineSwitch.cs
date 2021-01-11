@@ -30,6 +30,5 @@ namespace VisualPinball.Engine.Game.Engines
 		public string DeviceHint;
 		public string DeviceItemHint;
 		public Boolean ConstantHint;
-		public int NumericalId;
 	}
 }

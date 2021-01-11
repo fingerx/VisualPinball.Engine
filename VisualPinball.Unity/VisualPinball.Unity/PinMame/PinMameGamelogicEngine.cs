@@ -37,7 +37,7 @@ namespace VisualPinball.Unity.PinMame
 
 		public GameObject Dmd;
 
-		public GamelogicEngineSwitch[] AvailableSwitches => _switches.Values.ToArray();
+		public GamelogicEngineSwitch[] AvailableSwitches => _gameMeta.AvailableSwitches;
 		public GamelogicEngineCoil[] AvailableCoils => _coils.Values.ToArray();
 		public GamelogicEngineLamp[] AvailableLamps => _lamps.Values.ToArray();
 
