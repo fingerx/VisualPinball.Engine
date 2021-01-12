@@ -85,8 +85,8 @@ namespace VisualPinball.Unity
 			var nearPlane = math.max(0.001f, math.abs(deltaN * 0.9f));
 			var farPlane = math.max(1f, math.abs(deltaF*1.1f));
 
-			Camera.nearClipPlane = nearPlane;
-			Camera.farClipPlane = farPlane;
+			//Camera.nearClipPlane = nearPlane;
+			//Camera.farClipPlane = farPlane;
 		}
 	}
 }
