@@ -23,6 +23,14 @@ namespace VisualPinball.Unity.PinMame
 	public class PinMameGame
 	{
 		public GamelogicEngineSwitch[] AvailableSwitches { get; } = {
+			new GamelogicEngineSwitch { Id = "1", Description = "Left Coin Chute", InputActionHint = InputConstants.ActionInsertCoin1 },
+			new GamelogicEngineSwitch { Id = "2", Description = "Center Coin Chute", InputActionHint = InputConstants.ActionInsertCoin2 },
+			new GamelogicEngineSwitch { Id = "3", Description = "Right Coin Chute", InputActionHint = InputConstants.ActionInsertCoin3 },
+			new GamelogicEngineSwitch { Id = "4", Description = "Fourth Coin Chute", InputActionHint = InputConstants.ActionInsertCoin4 },
+			new GamelogicEngineSwitch { Id = "5", Description = "Door: Escape", InputActionHint = InputConstants.ActionCoinDoorCancel },
+			new GamelogicEngineSwitch { Id = "6", Description = "Door: Down", InputActionHint = InputConstants.ActionCoinDoorDown },
+			new GamelogicEngineSwitch { Id = "7", Description = "Door: Up", InputActionHint = InputConstants.ActionCoinDoorUp },
+			new GamelogicEngineSwitch { Id = "8", Description = "Door: Enter", InputActionHint = InputConstants.ActionCoinDoorEnter },
 			new GamelogicEngineSwitch { Id = "11", Description = "Launch Ball", InputActionHint = InputConstants.ActionPlunger },
 			new GamelogicEngineSwitch { Id = "12", Description = "Catapult Target" },
 			new GamelogicEngineSwitch { Id = "13", Description = "Start Button", InputActionHint = InputConstants.ActionStartGame },
@@ -68,11 +76,14 @@ namespace VisualPinball.Unity.PinMame
 			new GamelogicEngineSwitch { Id = "66", Description = "Left Loop High" },
 			new GamelogicEngineSwitch { Id = "67", Description = "Right Loop Low" },
 			new GamelogicEngineSwitch { Id = "68", Description = "Right Loop High" },
-			new GamelogicEngineSwitch { Id = "71", Description = "" },
+			new GamelogicEngineSwitch { Id = "71", Description = "Right Bank Top" },
 			new GamelogicEngineSwitch { Id = "72", Description = "Right Bank Middle" },
 			new GamelogicEngineSwitch { Id = "73", Description = "Right Bank Bottom" },
 			new GamelogicEngineSwitch { Id = "74", Description = "Left Troll Up" },
 			new GamelogicEngineSwitch { Id = "75", Description = "Right Troll Up" },
+
+			new GamelogicEngineSwitch { Id = "112", Description = "Lower Right Flipper", InputActionHint = InputConstants.ActionRightFlipper },
+			new GamelogicEngineSwitch { Id = "114", Description = "Lower Left Flipper", InputActionHint = InputConstants.ActionLeftFlipper },
 		};
 
 		public GamelogicEngineLamp[] AvailableLamps { get; } = {

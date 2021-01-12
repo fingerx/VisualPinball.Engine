@@ -106,6 +106,18 @@ namespace VisualPinball.Unity.PinMame
 				return;
 			}
 
+			// coils
+			var changedCoils = _pinMame.GetChangedSolenoids();
+			for (var i = 0; i < changedCoils.Length; i += 2) {
+				var id = changedCoils[i];
+				var val = changedCoils[i + 1];
+
+				if (_coils.ContainsKey(id)) {
+					Logger.Info($"[PinMAME] <= coil {id}: {val}");
+					OnCoilChanged?.Invoke(this, new CoilEventArgs(_coils[id].Id, val == 1));
+				}
+			}
+
 			// lamps
 			var changedLamps = _pinMame.GetChangedLamps();
 			for (var i = 0; i < changedLamps.Length; i += 2) {
@@ -113,6 +125,7 @@ namespace VisualPinball.Unity.PinMame
 				var val = changedLamps[i + 1];
 
 				if (_lamps.ContainsKey(id)) {
+					//Logger.Info($"[PinMAME] <= lamp {id}: {val}");
 					OnLampChanged?.Invoke(this, new LampEventArgs(_lamps[id].Id, val));
 				}
 			}
@@ -146,7 +159,11 @@ namespace VisualPinball.Unity.PinMame
 		public void Switch(string id, bool isClosed)
 		{
 			if (int.TryParse(id, out var n)) {
+				Logger.Info($"[PinMAME] => sw {id}: {isClosed}");
 				_pinMame.SetSwitch(n, isClosed);
+
+			} else {
+				Logger.Error($"[PinMAME] Cannot parse switch ID {id}.");
 			}
 		}
 	}
