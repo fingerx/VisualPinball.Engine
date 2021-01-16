@@ -96,5 +96,13 @@ namespace VisualPinball.Unity
 				});
 			}
 		}
+
+		/// <summary>
+		/// Triggers the current value.
+		/// </summary>
+		public void InitSwitch()
+		{
+			_switchHandler.Init();
+		}
 	}
 }

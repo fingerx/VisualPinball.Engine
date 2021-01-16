@@ -67,6 +67,16 @@ namespace VisualPinball.Unity
 			_wires.Add(wireConfig);
 		}
 
+		internal void Init()
+		{
+			// handle switch -> gamelogic engine
+			if (Engine != null && _switchIds != null) {
+				foreach (var switchConfig in _switchIds) {
+					Engine.Switch(switchConfig.SwitchId, IsClosed);
+				}
+			}
+		}
+
 		/// <summary>
 		/// Sends the switch element to the gamelogic engine and linked wires.
 		/// </summary>

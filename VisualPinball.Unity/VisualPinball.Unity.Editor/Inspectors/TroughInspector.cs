@@ -131,6 +131,10 @@ namespace VisualPinball.Unity.Editor
 
 				GUILayout.EndVertical();
 				GUILayout.EndHorizontal();
+
+				if (GUILayout.Button("Send Switches")) {
+					troughApi.InitSwitches();
+				}
 			}
 		}
 

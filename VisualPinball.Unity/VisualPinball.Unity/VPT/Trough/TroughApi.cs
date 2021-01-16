@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using NLog;
 using UnityEngine;
+using VisualPinball.Engine.Resources.Meshes;
 using VisualPinball.Engine.VPT;
 using VisualPinball.Engine.VPT.Trough;
 using Logger = NLog.Logger;
@@ -228,6 +229,15 @@ namespace VisualPinball.Unity
 
 			// finally, emit the event for anyone else to chew on
 			Init?.Invoke(this, EventArgs.Empty);
+		}
+
+		public void InitSwitches()
+		{
+			foreach (var sw in _stackSwitches) {
+				sw?.InitSwitch();
+			}
+			JamSwitch?.InitSwitch();
+			EntrySwitch?.InitSwitch();
 		}
 
 		/// <summary>
