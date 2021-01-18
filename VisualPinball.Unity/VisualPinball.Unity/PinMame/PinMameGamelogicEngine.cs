@@ -23,7 +23,7 @@ using VisualPinball.Engine.Game.Engines;
 using VisualPinball.Engine.PinMame;
 using Logger = NLog.Logger;
 
-namespace VisualPinball.Unity.PinMame
+namespace VisualPinball.Unity
 {
 	[Serializable]
 	[DisallowMultipleComponent]
@@ -47,8 +47,8 @@ namespace VisualPinball.Unity.PinMame
 		public event EventHandler<LampsEventArgs> OnLampsChanged;
 		public event EventHandler<LampColorEventArgs> OnLampColorChanged;
 
-		private Engine.PinMame.PinMame _pinMame;
-		private readonly PinMameGame _gameMeta;
+		private PinMame _pinMame;
+		private readonly MedievalMadness _gameMeta;
 
 		private Dictionary<int, GamelogicEngineSwitch> _switches = new Dictionary<int, GamelogicEngineSwitch>();
 		private Dictionary<int, GamelogicEngineCoil> _coils = new Dictionary<int, GamelogicEngineCoil>();
@@ -70,7 +70,7 @@ namespace VisualPinball.Unity.PinMame
 
 		public PinMameGamelogicEngine()
 		{
-			_gameMeta = new PinMameGame();
+			_gameMeta = new MedievalMadness();
 			foreach (var lamp in _gameMeta.AvailableLamps) {
 				if (int.TryParse(lamp.Id, out var id)) {
 					_lamps[id] = lamp;

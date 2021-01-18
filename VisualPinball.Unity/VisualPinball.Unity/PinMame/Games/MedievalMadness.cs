@@ -18,9 +18,9 @@ using VisualPinball.Engine.Common;
 using VisualPinball.Engine.Game.Engines;
 using VisualPinball.Engine.VPT.Trough;
 
-namespace VisualPinball.Unity.PinMame
+namespace VisualPinball.Unity
 {
-	public class PinMameGame
+	public class MedievalMadness
 	{
 		public GamelogicEngineSwitch[] AvailableSwitches { get; } = {
 			new GamelogicEngineSwitch { Id = "1", Description = "Left Coin Chute", InputActionHint = InputConstants.ActionInsertCoin1 },
