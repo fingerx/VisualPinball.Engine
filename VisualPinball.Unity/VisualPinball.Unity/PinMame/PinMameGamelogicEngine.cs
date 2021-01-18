@@ -96,8 +96,16 @@ namespace VisualPinball.Unity
 				OnLampChanged?.Invoke(this, new LampEventArgs(lamp.Id, 0));
 			}
 
-			_pinMame = Engine.PinMame.PinMame.Instance();
+			_pinMame = PinMame.Instance();
 			_pinMame.StartGame(GameName, showConsole: true);
+
+			var switches = player.SwitchStatuses;
+			Debug.Log("Sending initial switch statuses...");
+			foreach (var sw in switches.Keys) {
+				if (int.TryParse(sw, out var s)) {
+					_pinMame.SetSwitch(s, switches[sw]);
+				}
+			}
 		}
 
 		private void Update()
