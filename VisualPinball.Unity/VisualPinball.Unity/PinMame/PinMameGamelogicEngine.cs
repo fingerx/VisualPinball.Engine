@@ -28,8 +28,7 @@ namespace VisualPinball.Unity
 	[Serializable]
 	[DisallowMultipleComponent]
 	[AddComponentMenu("Visual Pinball/Game Logic Engine/PinMAME")]
-	public class PinMameGamelogicEngine : MonoBehaviour, IGamelogicEngine,
-		IGamelogicEngineWithSwitches, IGamelogicEngineWithCoils, IGamelogicEngineWithLamps
+	public class PinMameGamelogicEngine : MonoBehaviour, IGamelogicEngine
 	{
 		public string Name { get; } = "PinMAME Gamelogic Engine";
 
@@ -48,6 +47,7 @@ namespace VisualPinball.Unity
 		public event EventHandler<LampColorEventArgs> OnLampColorChanged;
 
 		private PinMame _pinMame;
+		private Player _player;
 		private readonly MedievalMadness _gameMeta;
 
 		private Dictionary<int, GamelogicEngineSwitch> _switches = new Dictionary<int, GamelogicEngineSwitch>();
@@ -98,8 +98,12 @@ namespace VisualPinball.Unity
 
 			_pinMame = PinMame.Instance();
 			_pinMame.StartGame(GameName, showConsole: true);
+			_player = player;
+		}
 
-			var switches = player.SwitchStatuses;
+		public void SendInitialSwitches()
+		{
+			var switches = _player.SwitchStatuses;
 			Debug.Log("Sending initial switch statuses...");
 			foreach (var sw in switches.Keys) {
 				if (int.TryParse(sw, out var s)) {
