@@ -20,7 +20,7 @@ using System.Linq;
 using NLog;
 using UnityEngine;
 using VisualPinball.Engine.Game.Engines;
-using VisualPinball.Engine.PinMame;
+using PinMame;
 using Logger = NLog.Logger;
 
 namespace VisualPinball.Unity
@@ -46,7 +46,7 @@ namespace VisualPinball.Unity
 		public event EventHandler<LampsEventArgs> OnLampsChanged;
 		public event EventHandler<LampColorEventArgs> OnLampColorChanged;
 
-		private PinMame _pinMame;
+		private PinMame.PinMame _pinMame;
 		private Player _player;
 		private readonly MedievalMadness _gameMeta;
 
@@ -96,7 +96,7 @@ namespace VisualPinball.Unity
 				OnLampChanged?.Invoke(this, new LampEventArgs(lamp.Id, 0));
 			}
 
-			_pinMame = PinMame.Instance();
+			_pinMame = PinMame.PinMame.Instance();
 			_pinMame.StartGame(GameName, showConsole: true);
 			_player = player;
 		}

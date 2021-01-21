@@ -28,13 +28,14 @@
     <None Remove="obj\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
     <PackageReference Include="NLog" Version="4.7.6" />
     <PackageReference Include="OpenMcdf" Version="2.2.1.9" />
     <PackageReference Include="NetMiniZ" Version="1.2.2" />
     <PackageReference Include="NetMiniZ.Native" Version="1.2.2" />
     <PackageReference Include="NetVips" Version="1.2.4" />
     <PackageReference Include="NetVips.Native" Version="8.10.5.1" />
+    <PackageReference Include="PinMame" Version="0.0.3" />
+    <PackageReference Include="PinMame.Native" Version="0.0.3" />
   </ItemGroup>
   <ImportGroup Condition="'$(RuntimeIdentifier)' == 'win-x86' Or '$(RuntimeIdentifier)' == 'win-x64'">
     <Import Project="$(NuGetPackageRoot)\netvips.native.$(RuntimeIdentifier)\8.10.5.1\build\net45\NetVips.Native.$(RuntimeIdentifier).targets" Condition="Exists('$(NuGetPackageRoot)\netvips.native.$(RuntimeIdentifier)\8.10.5.1\build\net45\NetVips.Native.$(RuntimeIdentifier).targets')" />
@@ -63,14 +64,16 @@
       <Plugins Include="$(OutDir)OpenMcdf.dll" />
 
       <NativePlugins Include="$(OutDir)NetMiniZ.dll" />
-
+      <NativePlugins Include="$(NuGetPackageRoot)\netminiz.native.$(RuntimeIdentifier)\1.2.2\runtimes\$(RuntimeIdentifier)\native\*" />
+			
       <NativePlugins Include="$(OutDir)NetVips.dll" />
       <NativePlugins Include="$(OutDir)System.Buffers.dll" />
       <NativePlugins Include="$(OutDir)System.Memory.dll" />
       <NativePlugins Include="$(OutDir)System.Runtime.CompilerServices.Unsafe.dll" />
-
-      <NativePlugins Include="$(NuGetPackageRoot)\netminiz.native.$(RuntimeIdentifier)\1.2.2\runtimes\$(RuntimeIdentifier)\native\*" />
       <NativePlugins Include="$(NuGetPackageRoot)\netvips.native.$(RuntimeIdentifier)\8.10.5.1\runtimes\$(RuntimeIdentifier)\native\*" />
+      
+      <NativePlugins Include="$(OutDir)PinMame.dll" />
+      <NativePlugins Include="$(NuGetPackageRoot)\pinmame.native.$(RuntimeIdentifier)\0.0.3\runtimes\$(RuntimeIdentifier)\native\*" />
     </ItemGroup>
     <Message Text="PluginsDeploy: @(Plugins) @(NativePlugins)" />
     <Copy SourceFiles="@(Plugins)" DestinationFolder="..\VisualPinball.Unity\Plugins\" SkipUnchangedFiles="true" />
